@@ -1,30 +1,101 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
 ```bash
 npm run dev
 # or
 yarn dev
 ```
+### next-React 服务端渲染
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. 快速创建next项目
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+    1. 安装脚手架 npm install -g create-next-app
+    2. 创建项目名 npx create-next-app 项目名
+    3. 安装依赖   npm i
+    4. 运行项目   npm run dev
+```
 
-## Learn More
+2. page  
+```
+    1. 直接在page下创建组件即可使用。 路由 直接在地址下输入 page =>/ 文件名
+```
 
-To learn more about Next.js, take a look at the following resources:
+3. 路由的跳转 
+```jsx
+    1. 引入路由 import Router from 'next/router'
+    2. {()=>{Router.push('/TestA')}} 耦合性太高，一般放到方法里进行跳转
+    3. function toTestA(){
+            Router.push('/TestA')
+        }
+```
+4. 路由传参
+```jsx
+    1. function getParams(){
+        Router.push({
+            pathname:'/TestC',
+            query:{
+                name:"传参"
+            }
+        })
+    }
+    2. 使用 {router.query.name}接收     参考TestC   用withRouter接收
+```
+5. 六个钩子事件
+```jsx
+    1. Router.events.on('routeChangeStart',(...args)=>{
+        /*
+        *   1. routeChangeStart     路由开始变化时
+            2. beforeHistoryChange  浏览器history触发前
+            3. routeChangeComplete  路由结束变化时
+            4. routeChangeError     路由错误跳转时
+            5. hashChangeStart      hash跳转开始时
+            6. hashChangeComplete   hash跳转完成时
+        */   
+    })
+```
+6. 使用getInitialProps来获取服务端数据
+```jsx
+    1. function TestC (){
+        XXX
+    }
+    TestC.getInitialProps=()=>{
+        axios.get('xxx').then((res)=>{console.log(res)})
+    }
+```
+7. 使用style jsx来书写样式
+```jsx
+    1. <style jsx>
+            {`
+                div{color:blue;}
+            `}
+        </style>
+```
+8. 懒加载
+```jsx
+    1. 懒加载模块
+        使用 async awiat 配合使用default
+       
+    2. 懒加载组件
+        1. import dynamic from 'next/dynamic'   // 引入dynamic
+        2. const DemoA = dynamic(import('./DemoA'))
+        3. 在render中使用即可      详情 看Time组件
+```
+9. 自定义Head标签，便于SEO优化
+```jsx
+    1. 引入 import Head from 'next/head'
+    2.  <Head>
+            <title>技术胖是最胖的！</title>
+            <meta charSet='utf-8' />
+        </Head>    // 即可
+```
+10. 让next.js支持css文件
+```jsx
+    1. 新建文件夹下新建css文件
+    2. 安装 yarn add @zeit/next-css 插件
+    3. 新建next.config.js 并写下该配置
+    4. 引入css文件即可
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+11. 按需引入antd
+```
+```  
+ 
