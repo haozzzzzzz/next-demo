@@ -90,12 +90,16 @@ yarn dev
 10. 让next.js支持css文件
 ```jsx
     1. 新建文件夹下新建css文件
-    2. 安装 yarn add @zeit/next-css 插件
-    3. 新建next.config.js 并写下该配置
+    2. 安装 `yarn add @zeit/next-css` 插件
+    3. 新建 `next.config.js` 并写下该配置
     4. 引入css文件即可
 ```
 
 11. 按需引入antd
-```
+```jsx
+    1. 安装antd库  `yarn add antd`
+    2. 安装并配置依赖  `yarn add babel-plugin-import`
+    3. 新建 `.babelrc`文件 并写下该配置
+    4. 引入组件,重启项目就会有按需加载样式了
 ```  
  

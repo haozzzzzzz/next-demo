@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import Hello from './hello'
+import { Button } from 'antd'
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
-import './../../static/test.css'
+// import './../../static/test.css'
+// import '../node_modules/antd/dist/antd.css';
 const Home = () => {
 
   function gotoA() {
@@ -53,9 +55,10 @@ const Home = () => {
       <div>
         <div>
           我是首页
+          <Button type="primary">测试按钮</Button>
         </div>
         <div>
-          <button onClick={gotoA}>测试A</button>
+          <Button  onClick={gotoA}>测试A</Button>
         </div>
         <div>
           <Link href="/TestB"><a><span>去测试B</span></a></Link>
@@ -63,7 +66,7 @@ const Home = () => {
 
         <div>
           {/* <Link href="/TestC?name=宗师叶问"><a><span>去测试c</span></a></Link> */}
-          <button onClick={gotoC}>测试C</button>
+          <Button  onClick={gotoC}>测试C</Button >
         </div>
         <div>
           <Link href="#TestB"><a><span>去测试D</span></a></Link>
@@ -72,11 +75,11 @@ const Home = () => {
       <style jsx>
         {`
           div{color:red;},
-          button{color:${color}}
+          Button {color:${color}}
           `}
       </style>
       <div>
-        <button onClick={changeColor}>测试按钮</button>
+        <Button  onClick={changeColor}>测试按钮</Button>
       </div>
       <main>
         <Hello child="按钮测试"></Hello >
