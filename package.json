@@ -16,7 +16,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "moment": "^2.26.0"
   }
 }
